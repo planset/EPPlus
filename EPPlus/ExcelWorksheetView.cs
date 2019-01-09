@@ -221,6 +221,19 @@ namespace OfficeOpenXml
         }
 
         /// <summary>
+        /// Set the top left cell. 
+        /// </summary>
+        public string TopLeftCell
+        {
+            set
+            {
+                int fromCol, fromRow, toCol, toRow;
+                ExcelCellBase.GetRowColFromAddress(value, out fromRow, out fromCol, out toRow, out toCol);
+                SetXmlNodeString("@topLeftCell", ExcelCellBase.GetAddress(fromRow, fromCol));
+            }
+        }
+
+        /// <summary>
         /// Selected Cells in the worksheet. Used in combination with ActiveCell.
         /// If the active cell is not inside the selected range, the active cell will be set to the first cell in the selected range.
         /// If the selected range has multiple adresses, these are separated with space. If the active cell is not within the first address in this list, the attribute ActiveCellId must be set (not supported, so it must be set via the XML).
